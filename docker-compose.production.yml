@@ -10,26 +10,17 @@ services:
       NODE_ENV: production
       url: https://${DOMAIN_NAME}
 
-  cron:
-    build: ./cron
+  nginx:
+    build: ./nginx
+    container_name: ${NGINX_CONTAINER_NAME}
     restart: always
     depends_on:
       - ghost
     volumes:
-      - data:/opt/blog_data:ro
-      - backup:/opt/blog_backup
-    environment:
-      DATA_PATH: /opt/blog_data
-      BACKUP_PATH: /opt/blog_backup
-
-  nginx:
-    build: ./nginx
-    restart: always
-    depends_on:
-      - ghost
+      - ./nginx/ghost.conf/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt:/etc/letsencrypt
+      - ${NGINX_HTML_PATH}:/var/www/html
     ports:
       - 80:80
-
-volumes:
-  backup:
+      - 443:443
 

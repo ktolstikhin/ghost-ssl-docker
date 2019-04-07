@@ -2,7 +2,7 @@
 
 ## Deployment
 
-# TODO: Install Docker, Docker Compose, and Docker Machine.
+# TODO: Install Docker and Docker Compose.
 
 ### Development
 
@@ -13,7 +13,7 @@ docker-compose up
 
 ### Production
 
-# TODO: Create docker machine, set environment, and run:
+# TODO: Copy project to the remote host, run ./bin/install.sh, and start the blog:
 
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose.production.yml up -d

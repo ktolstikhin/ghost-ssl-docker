@@ -1,5 +1,6 @@
 #!/bin/sh
 
+source $(dirname "$0")/.ghost_blog_env
 period={1:-daily}
 
 if [ $period = daily ]; then
@@ -14,6 +15,7 @@ echo "$(date) [INFO] Backup $DATA_PATH to $backup_archive"
 tar -zcvf $backup_archive $DATA_PATH
 
 if [ $? -ne 0 ]; then
-  echo "[ERROR] Backup failed!"
+  echo "$(date) [ERROR] Backup failed!"
+  exit 1
 fi
 

@@ -5,8 +5,5 @@ services:
   ghost:
     image: ghost:latest
     volumes:
-      - data:/var/lib/ghost
-
-volumes:
-  data:
+      - ${DATA_PATH}:/var/lib/ghost
 
