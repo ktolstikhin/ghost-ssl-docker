@@ -1,0 +1,35 @@
+version: "2"
+
+services:
+
+  ghost:
+    restart: always
+    expose:
+      - 2368
+    environment:
+      NODE_ENV: production
+      url: https://${DOMAIN_NAME}
+
+  cron:
+    build: ./cron
+    restart: always
+    depends_on:
+      - ghost
+    volumes:
+      - data:/opt/blog_data:ro
+      - backup:/opt/blog_backup
+    environment:
+      DATA_PATH: /opt/blog_data
+      BACKUP_PATH: /opt/blog_backup
+
+  nginx:
+    build: ./nginx
+    restart: always
+    depends_on:
+      - ghost
+    ports:
+      - 80:80
+
+volumes:
+  backup:
+

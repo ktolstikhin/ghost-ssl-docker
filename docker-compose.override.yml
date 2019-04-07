@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+
+  ghost:
+    ports:
+      - 80:2368
+    environment:
+      NODE_ENV: development
+
