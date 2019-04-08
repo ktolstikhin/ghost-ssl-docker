@@ -3,7 +3,6 @@ version: "2"
 services:
 
   ghost:
-    image: ghost:2-alpine
     restart: always
     expose:
       - 2368
