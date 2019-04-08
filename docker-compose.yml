@@ -3,7 +3,14 @@ version: "2"
 services:
 
   ghost:
-    image: ghost:latest
+    image: ghost:2
+    ports:
+      - 80:2368
     volumes:
-      - ${DATA_PATH}:/var/lib/ghost
+      - data:/var/lib/ghost
+    environment:
+      NODE_ENV: development
+
+volumes:
+  data:
 

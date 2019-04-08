@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 source $(dirname "$0")/.ghost_blog_env
 period={1:-daily}

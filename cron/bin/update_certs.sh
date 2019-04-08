@@ -1,8 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
 source $(dirname "$0")/.ghost_blog_env
-mkdir -p $NGINX_HTML_PATH
-
 echo "$(date) [INFO] Updating certificates..."
 
 docker run \

@@ -3,9 +3,12 @@ version: "2"
 services:
 
   ghost:
+    image: ghost:2-alpine
     restart: always
     expose:
       - 2368
+    volumes:
+      - ${DATA_PATH}:/var/lib/ghost
     environment:
       NODE_ENV: production
       url: https://${DOMAIN_NAME}
