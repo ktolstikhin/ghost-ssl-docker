@@ -20,7 +20,7 @@ In production, you need to copy the project folder to the remote host directory 
 cd /path/to/ghost_blog
 sudo ./bin/install.sh
 ```
-This will add backup and certificate update scripts to root's cron jobs and sets up the firewall using the `ufw` utility. Once the install script has finished, run the blog using the following command:
+This will add backup and certificate update scripts to root's cron jobs and fetch Let's Encrypt free SSL/TLS certificates for the current host. The firewall settings can be applied optionally using the `./bin/firewall.sh` script. Once the install script has finished, run the blog using the following command:
 ```bash
 docker-compose -f docker-compose.prod.yml up -d
 ```

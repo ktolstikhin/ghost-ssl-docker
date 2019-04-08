@@ -12,18 +12,6 @@ cp .env /usr/bin/.ghost_blog_env
 # Get Let's Encrypt free SSL/TLS certificates:
 /usr/bin/update_certs.sh
 
-# Add backup and cert update scripts to cron jobs:
+# Add backup and certificate update scripts to cron jobs:
 crontab cron/crontab.txt
-
-# Setup the firewall:
-command -v ufw > /dev/null 2>&1 || {
-  apt-get update && apt-get install -y ufw
-}
-
-ufw default deny incoming
-ufw default allow outgoing
-ufw allow ssh
-ufw allow 80/tcp
-ufw allow 443/tcp
-ufw enable
 
