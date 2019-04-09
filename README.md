@@ -1,10 +1,10 @@
 # Yet another self-hosted Ghost blog with Docker, Compose, and Nginx.
 
-This is a simple Ghost blog setup wrapped up in Docker containers. Here, the default SQLite database is used. The content backup and updating Let's Encrypt certificates are carried out periodically by cron.
+This is a simple Ghost blog setup wrapped up in Docker containers. Here, the default SQLite database is used. The content backup and updating Let's Encrypt SSL/TLS certificates are carried out periodically by cron. For even simpler HTTP version, checkout the *http* branch which offers easier deployment using Docker Machine.
 
 ## Deployment
 
-First, install [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and [Docker Compose](https://docs.docker.com/compose/install/) by following instructions from the official websites.
+First, install [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and [Docker Compose](https://docs.docker.com/compose/install/) by following instructions from the official websites. This setup was tested successfully with Ubuntu 16.04 and 18.04 LTS.
 
 ### Development
 
