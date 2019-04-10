@@ -4,8 +4,11 @@ period=${1:-daily}
 
 if [ $period = daily ]; then
   timestamp=$(date +\%A)
-else
+elif [ $period = weekly ]; then
   timestamp=$(date -I)
+else
+  echo "[ERROR] Unsupported backup period!"
+  exit 1
 fi
 
 backup_archive=${BACKUP_PATH}/ghost_backup_${timestamp}.tar.gz

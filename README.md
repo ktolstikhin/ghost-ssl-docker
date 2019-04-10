@@ -19,7 +19,14 @@ docker-compose up
 ### Production
 
 First, update `DOMAIN_NAME` variable in `.env` with the actual domain name. Then, create the host machine using the Docker Machine, connect the running shell on the localhost to the new machine, and finally run the following command from the project's root directory:
+
+HTTP:
 ```bash
 docker-compose -f docker-compose.yml -f production.yml up -d
+```
+
+HTTPS:
+```bash
+docker-compose -f docker-compose.yml -f production.yml -f production.https.yml up -d
 ```
 
