@@ -1,5 +1,8 @@
 # Yet another self-hosted Ghost blog with Docker, Compose, and Nginx.
 
+## TODO: Add a link to the blog post: https://www.metamost.com/ghost-docker-setup/
+## TODO: Add links to nginx-proxy and letsencrypt-nginx-proxy-companion repos
+
 This is a simple Ghost blog setup wrapped up in Docker containers. Here, the default SQLite database is used. The content backup and updating Let's Encrypt SSL/TLS certificates are carried out periodically by cron. For even simpler HTTP version, checkout the *http* branch which offers easier deployment using Docker Machine.
 
 ## Deployment
@@ -15,12 +18,7 @@ docker-compose up
 
 ### Production
 
-First, copy the project folder to `/path/to/ghost_blog` on the remote host and replace all occurancies of `blog.example.com` with your domain name in `.env` and `nginx/ghost.conf` files. Then, run install script as root:
-```bash
-cd /path/to/ghost_blog
-sudo ./bin/install.sh
-```
-This will add scripts used for backup and certificate update to root's cron jobs and will fetch Let's Encrypt free SSL/TLS certificates for the current domain. The firewall settings can be applied optionally using the `./bin/firewall.sh` script. Once the install script has finished, run the blog using the following command:
+First, copy the project folder to `/path/to/ghost_blog` on the remote host and replace `blog.example.com` with your domain name in `.env`. The firewall settings can be applied optionally using the `./bin/firewall.sh` script. Then, run the blog using the following command:
 ```bash
 docker-compose -f docker-compose.yml -f production.yml up -d
 ```

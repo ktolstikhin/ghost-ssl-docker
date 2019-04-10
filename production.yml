@@ -3,13 +3,14 @@ version: "3"
 services:
 
   nginx-proxy:
-    image: nginx
+    build:
+      context: ./nginx
+      dockerfile: ./proxy/Dockerfile
     restart: always
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro,z
       - nginx-conf:/etc/nginx/conf.d
       - nginx-vhost:/etc/nginx/vhost.d
       - nginx-html:/usr/share/nginx/html
@@ -17,16 +18,17 @@ services:
       - nginx-htpasswd:/etc/nginx/htpasswd:ro
 
   docker-gen:
-    image: jwilder/docker-gen
+    build:
+      context: ./nginx
+      dockerfile: ./gen/Dockerfile
     restart: always
     volumes:
-      - ./nginx/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro,z
-      - /var/run/docker.sock:/tmp/docker.sock:ro,z
       - nginx-conf:/etc/nginx/conf.d
       - nginx-vhost:/etc/nginx/vhost.d
       - nginx-html:/usr/share/nginx/html
       - nginx-certs:/etc/nginx/certs:ro
       - nginx-htpasswd:/etc/nginx/htpasswd:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro,z
     command: >
       -notify-sighup nginx-proxy \
       -watch -wait 5s:30s \
