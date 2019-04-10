@@ -28,7 +28,10 @@ services:
       - nginx_certs:/etc/nginx/certs:ro
       - nginx_htpasswd:/etc/nginx/htpasswd:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro,z
-    command: -notify-sighup nginx_proxy -watch -only-exposed /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
+    command: >
+      -notify-sighup nginx_proxy -watch -only-exposed
+      /etc/docker-gen/templates/nginx.tmpl
+      /etc/nginx/conf.d/default.conf
 
   ghost:
     restart: always
