@@ -11,13 +11,17 @@ else
   exit 1
 fi
 
-backup_archive=${BACKUP_PATH}/ghost_backup_${timestamp}.tar.gz
-echo "[INFO] Backup $DATA_PATH to $backup_archive"
+for data_dir in $(ls ${DATA_PATH}/*_data); do
+  name=$(basename $data_dir)
+  archive=${DATA_PATH}/backup/${name}_backup_${timestamp}.tar.gz
 
-tar -zcf $backup_archive $DATA_PATH
+  echo "[INFO] Backup $data_dir to $archive"
+  tar -zcf $archive $data_dir
 
-if [ $? -ne 0 ]; then
-  echo "[ERROR] Backup failed!"
-  exit 1
-fi
+  if [ $? -ne 0 ]; then
+    echo "[ERROR] Backup failed!"
+    exit 1
+  fi
+
+done
 

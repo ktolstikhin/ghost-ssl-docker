@@ -46,11 +46,10 @@ services:
     depends_on:
       - ghost
     volumes:
-      - ghost_data:/usr/share/ghost_data:ro
-      - ghost_backup:/usr/share/ghost_backup
+      - ghost_data:${DATA_PATH}/ghost_data:ro
+      - backup:${DATA_PATH}/backup
     environment:
-      DATA_PATH: /usr/share/ghost_data
-      BACKUP_PATH: /usr/share/ghost_backup
+      DATA_PATH: ${DATA_PATH}
 
 volumes:
   nginx_conf:
@@ -58,5 +57,5 @@ volumes:
   nginx_html:
   nginx_certs:
   nginx_htpasswd:
-  ghost_backup:
+  backup:
 
