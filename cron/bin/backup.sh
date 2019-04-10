@@ -11,7 +11,7 @@ else
   exit 1
 fi
 
-for data_dir in $(ls ${DATA_PATH}/*_data); do
+for data_dir in $(ls -d ${DATA_PATH}/*_data); do
   name=$(basename $data_dir)
   archive=${DATA_PATH}/backup/${name}_backup_${timestamp}.tar.gz
 
