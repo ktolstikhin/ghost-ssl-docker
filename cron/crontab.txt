@@ -1,3 +1,3 @@
-@midnight /usr/bin/backup.sh
-@weekly /usr/bin/backup.sh weekly
-@monthly /usr/bin/update_certs.sh
+@midnight /usr/local/bin/backup.sh
+@weekly /usr/local/bin/backup.sh weekly
+
