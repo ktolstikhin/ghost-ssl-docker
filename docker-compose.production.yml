@@ -2,9 +2,7 @@ version: "3"
 
 services:
   nginx_proxy:
-    build:
-      context: ./nginx
-      dockerfile: ./proxy/Dockerfile
+    image: nginx:latest
     restart: always
     ports:
       - "80:80"
@@ -17,9 +15,7 @@ services:
       - nginx_htpasswd:/etc/nginx/htpasswd:ro
 
   docker_gen:
-    build:
-      context: ./nginx
-      dockerfile: ./gen/Dockerfile
+    build: ./docker-gen
     restart: always
     volumes:
       - nginx_conf:/etc/nginx/conf.d
