@@ -1,7 +1,6 @@
 version: "3"
 
 services:
-
   nginx_proxy:
     ports:
       - "443:443"

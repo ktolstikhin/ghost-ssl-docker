@@ -1,7 +1,6 @@
 version: "3"
 
 services:
-
   ghost:
     ports:
       - 2368:2368

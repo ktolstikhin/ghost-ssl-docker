@@ -56,6 +56,8 @@ services:
       - wp_db
     environment:
       VIRTUAL_HOST: blog.wordpress.com
+      LETSENCRYPT_HOST: blog.wordpress.com
+      LETSENCRYPT_EMAIL: admin@wordpress.com
       WORDPRESS_DB_HOST: wp_db:3306
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: wordpress
