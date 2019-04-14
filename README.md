@@ -1,8 +1,8 @@
-# Yet another self-hosted Ghost blog with Docker, Nginx, and SSL enabled
+# A self-hosted Ghost blog using Nginx with SSL enabled
 
 ![](../assets/ghost_and_company.png?raw=true)
 
-This is a simple Ghost blog setup wrapped up in Docker containers for easy development and deployment. Here, the default SQLite database is used even in production as it seems to be a good fit for blogging needs. You are free to change it to something more robust like MySQL, thanks to Docker it is pretty easy to do. The content backup is carried out periodically by cron. This project is heavily inspired by this [blog post](https://www.metamost.com/ghost-docker-setup/) and is being feasible thanks to these awesome projects: [nginx-proxy](https://github.com/jwilder/nginx-proxy), [docker-gen](https://github.com/jwilder/docker-gen), and [letsencrypt-nginx-proxy-companion](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion). While in production, the blog is served over HTTPS, free SSL/TLS certificates are fetched and renewed from the [Let's Encrypt](https://letsencrypt.org/) certificate authority automatically.
+This is a simple Ghost blog setup wrapped up in Docker containers for easy development and deployment. Here, the default SQLite database is used as it seems to be a good fit for blogging needs. You are free to change it to something more robust like MySQL, thanks to Docker it is pretty easy to do. The content backup is carried out periodically by cron. While in production, the blog is served over HTTPS, free SSL/TLS certificates are fetched and renewed from the [Let's Encrypt](https://letsencrypt.org/) certificate authority automatically. This project is heavily inspired by this [blog post](https://www.metamost.com/ghost-docker-setup/) and is being feasible thanks to these awesome projects: [nginx-proxy](https://github.com/jwilder/nginx-proxy), [docker-gen](https://github.com/jwilder/docker-gen), and [letsencrypt-nginx-proxy-companion](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion).
 
 ## Requirements
 
@@ -24,7 +24,7 @@ The blog will be running in development mode on port 2368.
 
 ### Production
 
-First, spin up a remote server and apply firewall settings using `bin/firewall.sh` script, if needed. Don't forget to update the `DOMAIN_NAME` variable in `.env` file with the actual domain name. Then, create a host machine using the Docker Machine and connect the running shell on the local machine to the remote one just created. Finally, execute the following command:
+First, spin up a remote server and apply firewall settings using `bin/firewall.sh` script, if needed. Don't forget to update the `DOMAIN_NAME` variable in `.env` file with the actual domain name. Then, create a remote machine using Docker Machine on the development host and connect the running shell to the new machine just created. Finally, execute the following command:
 ```bash
 $ docker-compose -f docker-compose.yml -f docker-compose.production.yml up -d
 ```
