@@ -31,18 +31,5 @@ $ docker-compose -f docker-compose.yml -f docker-compose.production.yml up -d
 
 ## Backup
 
-The `cron` container defined in `docker-compose.production.yml` file is responsible for periodical backup of data stored in shared volumes:
-```yaml
-cron:
-  build: ./cron
-  restart: always
-  depends_on:
-    - ghost
-  volumes:
-    - ghost_data:${DATA_PATH}/ghost_data:ro
-    - backup:${DATA_PATH}/backup
-  environment:
-    DATA_PATH: ${DATA_PATH}
-```
-Note the mount points of all the shared data volumes in `cron` container must have suffix `_data` in their paths such as `${DATA_PATH}/ghost_data` in the snippet above. This convention is used by the backup script `cron/bin/backup.sh` to filter out the data folders for a subsequent backup.
+The `cron` container defined in `docker-compose.production.yml` file is responsible for periodical backup of data stored in a shared `data` volume. The backup is scheduled by cron to run every `@midnight` and `@weekly`.
 

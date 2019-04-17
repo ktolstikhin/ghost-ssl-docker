@@ -59,7 +59,7 @@ services:
     depends_on:
       - ghost
     volumes:
-      - ghost_data:${DATA_PATH}/ghost_data:ro
+      - data:${DATA_PATH}/data:ro
       - backup:${DATA_PATH}/backup
     environment:
       DATA_PATH: ${DATA_PATH}

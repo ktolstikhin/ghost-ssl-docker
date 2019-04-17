@@ -11,22 +11,14 @@ else
   exit 1
 fi
 
-if [ -z $DATA_PATH ]; then
-  echo "[ERROR] The DATA_PATH is unset!"
+data=${DATA_PATH}/data
+archive=${DATA_PATH}/backup/ghost_backup_${timestamp}.tar.gz
+
+echo "[INFO] Backup $data to $archive"
+tar -zcf $archive $data
+
+if [ $? -ne 0 ]; then
+  echo "[ERROR] Backup failed!"
   exit 1
 fi
-
-for data_dir in $(ls -d ${DATA_PATH}/*_data); do
-  name=$(basename $data_dir)
-  archive=${DATA_PATH}/backup/${name}_backup_${timestamp}.tar.gz
-
-  echo "[INFO] Backup $data_dir to $archive"
-  tar -zcf $archive $data_dir
-
-  if [ $? -ne 0 ]; then
-    echo "[ERROR] Backup failed!"
-    exit 1
-  fi
-
-done
 
