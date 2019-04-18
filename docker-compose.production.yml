@@ -6,8 +6,8 @@ services:
     container_name: nginx-proxy
     restart: always
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
+      - 443:443
     volumes:
       - nginx_conf:/etc/nginx/conf.d
       - nginx_vhost:/etc/nginx/vhost.d
