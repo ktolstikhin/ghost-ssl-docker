@@ -11,11 +11,10 @@ else
   exit 1
 fi
 
-data=${DATA_PATH}/data
 archive=${DATA_PATH}/backup/ghost_backup_${timestamp}.tar.gz
 
-echo "$(date) [INFO] Backup ${data} to ${archive}"
-tar -zcf ${archive} ${data}
+echo "$(date) [INFO] Backup ${DATA_PATH}/data to ${archive}"
+tar -zcf ${archive} data -C ${DATA_PATH}
 
 if [ $? -ne 0 ]; then
   echo "$(date) [ERROR] Backup failed!"
